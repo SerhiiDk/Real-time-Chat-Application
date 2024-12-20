@@ -1,7 +1,5 @@
 # ChatApplication
 
-# Chat Application
-
 This project demonstrates a simple chat application built with the following technologies and services:
 
 - **Azure SQL Database**: Used as the primary database with **Entity Framework Core** for ORM.
