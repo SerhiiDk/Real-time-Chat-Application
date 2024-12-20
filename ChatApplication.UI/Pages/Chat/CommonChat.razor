@@ -1,0 +1,149 @@
+﻿@page "/common/chat"
+@using ChatApplication.UI.Service
+
+<PageTitle>Common Chat</PageTitle>
+
+<h3 class="text-center">Chat</h3>
+
+<div class="chat-container">
+    <div class="message-box">
+        @if (Messages != null && Messages.Any()){
+            @foreach (var message in Messages)
+            {
+                <div class="message-container @message.Sentiment.ToLower()">
+                    <span class="sender-name">@message.Sender:</span>
+                    <div class="message">@message.Message</div>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="input-container">
+        <input @bind="MessageText" placeholder="Type your message..." class="message-input" />
+        <button class="send-button" @onclick="SendMessage">Send</button>
+    </div>
+</div>
+
+<style>
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-box {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ccc;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .message-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 70%;
+        font-size: 14px;
+    }
+
+    .message {
+        padding: 10px;
+        border-radius: 8px;
+        word-wrap: break-word;
+    }
+
+    .sender-name {
+        font-size: 12px;
+        color: gray;
+        margin-bottom: 2px;
+    }
+
+    .user-message {
+        align-self: flex-end;
+        background-color: #007bff;
+        color: white;
+    }
+
+        .user-message .sender-name {
+            align-self: flex-end;
+        }
+
+    .bot-message {
+        align-self: flex-start;
+        background-color: #e9e9e9;
+        color: black;
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .message-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-right: 10px;
+        outline: none;
+    }
+
+        .message-input:focus {
+            border-color: #007bff;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+        }
+
+    .send-button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+        .send-button:hover {
+            background-color: #0056b3;
+        }
+
+    .message-container.positive {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .message-container.negative {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .message-container.neutral {
+        background-color: #e2e3e5;
+        color: #383d41;
+        border: 1px solid #d6d8db;
+    }
+
+    .message-container.none {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+
+</style>
