@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /ChatApplication.sln
+ChatApplication.API/appsettings.json
+ChatApplication.UI/appsettings.json
